@@ -1,179 +1,159 @@
-# Project 2 - Ames Housing Data and Kaggle Challenge
+<img src="http://imgur.com/1ZcRyrc.png" style="float: left; margin: 20px; height: 55px">
 
-Welcome to Project 2! It's time to start modeling.
+# Project Two  --  Ames Iowa Housing Data Analysis  
+<Font size='3'>  
 
-**Primary Learning Objectives:**
-1. Creating and iteratively refining a regression model
-2. Using [Kaggle](https://www.kaggle.com/) to practice the modeling process
-3. Providing business insights through reporting and presentation.
+&nbsp; &nbsp; Manu Kalia<br> &nbsp; &nbsp; DSI 7 - SF<br> &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; 25 - Mar -2019  
+</font>  
 
-You are tasked with creating a regression model based on the Ames Housing Dataset. This model will predict the price of a house at sale.
-
-The Ames Housing Dataset is an exceptionally detailed and robust dataset with over 70 columns of different features relating to houses.
-
-Secondly, we are hosting a competition on Kaggle to give you the opportunity to practice the following skills:
-
-- Refining models over time
-- Use of train-test split, cross-validation, and data with unknown values for the target to simulate the modeling process
-- The use of Kaggle as a place to practice data science
-
-As always, you will be submitting a technical report and a presentation. **You may find that the best model for Kaggle is not the best model to address your data science problem.**
-
-## Set-up
-
-Before you begin working on this project, please do the following:
-
-1. Sign up for an account on [Kaggle](https://www.kaggle.com/)
-2. **IMPORTANT**: Click this link ([Regression Challenge Sign Up](https://www.kaggle.com/t/164741a8c2db48cfb2dafff0746ab2ac)) to **join** the competition (otherwise you will not be able to make submissions!)
-3. Review the material on the [DSI-US-7 Regression Challenge](https://www.kaggle.com/c/dsi-us-7-project-2-regression-challenge)
-4. Review the [data description](http://jse.amstat.org/v19n3/decock/DataDocumentation.txt).
-
-## The Modeling Process
-
-1. The train dataset has all of the columns that you will need to generate and refine your models. The test dataset has all of those columns except for the target that you are trying to predict in your Regression model.
-2. Generate your regression model using the training data. We expect that within this process, you'll be making use of:
-    - train-test split
-    - cross-validation / grid searching for hyperparameters
-    - strong exploratory data analysis to question correlation and relationship across predictive variables
-    - code that reproducibly and consistently applies feature transformation (such as the preprocessing library)
-3. Predict the values for your target column in the test dataset and submit your predictions to Kaggle to see how your model does against unknown data.
-    - **Note**: Kaggle expects to see your submissions in a specific format. Check the challenge's page to make sure you are formatting your CSVs correctly!
-    - **You are limited to models you've learned in class**. In other words, you cannot use XGBoost, Neural Networks or any other advanced model for this project.
-4. Evaluate your models!
-    - consider your evaluation metrics
-    - consider your baseline score
-    - how can your model be used for inference?
-    - why do you believe your model will generalize to new data?
-
-## Submission
-
-Materials must be submitted by the beginning of class on **Monday, March 25**.
-
-The last day for the Kaggle compeititon will be **Friday, March 22**.
-
-Your technical report will be hosted on Github Enterprise. Make sure it includes:
-
-- A README.md (that isn't this file)
-- Jupyter notebook(s) with your analysis and models (renamed to describe your project)
-- At least one successful prediction submission on [DSI-US-7 Regression Challenge](https://www.kaggle.com/c/dsi-us-7-project-2-regression-challenge) --  you should see your name in the "[Leaderboard](https://www.kaggle.com/c/dsi-us-7-project-2-regression-challenge/leaderboard)" tab.
-- Data files
-- Presentation slides
-- Any other necessary files (images, etc.)
-
-**Check with your local instructor for how they would like you to submit your repo for review.**
 
 ---
 
-## Presentation Structure
+## Kaggle Competition using Ames Iowa Housing Data to Predict Sale Price
 
-- **Must be within time limit established by local instructor.**
-- Use Google Slides or some other visual aid (Keynote, Powerpoint, etc).
-- Consider the audience. **Check with your local instructor for direction**.
-- Start with the **data science problem**.
-- Use visuals that are appropriately scaled and interpretable.
-- Talk about your procedure/methodology (high level).
-- Talk about your primary findings.
-- Make sure you provide **clear recommendations** that follow logically from your analyses and narrative and answer your data science problem.
 
-Be sure to rehearse and time your presentation before class.
+### PROBLEM STATEMENT  
 
----
+<font size='2'>  
+Given the provided real estate transaction information in Ames, Iowa…<br>
+Can you predict/ explain Sale Price, given the other 80 columns of information (about 2051 rows)?
+</font>
 
-## Rubric
-Your local instructor will evaluate your project (for the most part) using the following criteria.  You should make sure that you consider and/or follow most if not all of the considerations/recommendations outlined below **while** working through your project.
 
-**Scores will be out of 27 points based on the 9 items in the rubric.** <br>
-*3 points per section*<br>
 
-| Score | Interpretation |
-| --- | --- |
-| **0** | *Project fails to meet the outlined expectations; many major issues exist.* |
-| **1** | *Project close to meeting expectations; many minor issues or a few major issues.* |
-| **2** | *Project meets expectations; few (and relatively minor) mistakes.* |
-| **3** | *Project demonstrates a thorough understanding of all of the considerations outlined.* |
+### EXECUTIVE SUMMARY  
+<br/>
+<font size='2'>  
 
-### The Data Science Process
+After conducting data cleaning and EDA with some care, some columns were dropped, others were made numerical.  Looked at some preliminary correlations to SalePrice.  Three sets of features were assembled:  set of 73, set of 33, and set of 82 features.  All were used in linear regression pipelines employing standard scaling.  both lass and ridge regularizations were applied.  In one case PolynomialFeatures was tried, as was PowerTransform.  Ultimately, the first attempt, with 73 features and lasso regularization was both a good score and interpretable, and is considered the best solution to this project.  
 
-**Problem Statement**
-- Is it clear what the student plans to do?
-- What type of model will be developed?
-- How will success be evaluated?
-- Is the scope of the project appropriate?
-- Is it clear who cares about this or why this is important to investigate?
-- Does the student consider the audience and the primary and secondary stakeholders?
+|Pipeline          |Train Score|Test Score |RMSE     |Interpretation / Comments / Conclusion           |
+|---               |---        |---        |---      |---                                              |
+|pipe1_lasso       |0.885539   |0.838231   |31471.89 |73 features, LassoCV() regularization, scaled    |
+|pipe1_ridge       |0.889490   |0.829837   |32278.14 |73 features, RidgeCV() regularization, scaled    |
+|.                 |.          |.          |.        |.                                                |
+|pipe2_lasso       |0.884607   |0.836931   |31598.11 |33 features, LassoCV() regularization, scaled    |
+|pipe2_ridge       |0.884645   |0.837096   |31582.17 |33 features, RidgeCV() regularization, scaled    |
+|.                 |.          |.          |.        |.                                                |
+|pipe2_poly_lasso  |0.943194   |0.793612   |35548.20 |33 feat, Poly, Lasso, scaled ... extemely overfit|
+|pipe2_poly_ridge  |0.964645   |0.787116   |36103.29 |33 feat, Poly, Lasso, scaled ... extemely overfit|
+|.                 |.          |.          |.        |.                                                |
+|regr2             |0.859595   |0.669053   |45014.78 |33 feat, PowerTransformed, Lasso regularizzation |
+</font>  
+<br>
 
-**Data Cleaning and EDA**
-- Are missing values imputed appropriately?
-- Are distributions examined and described?
-- Are outliers identified and addressed?
-- Are appropriate summary statistics provided?
-- Are steps taken during data cleaning and EDA framed appropriately?
-- Does the student address whether or not they are likely to be able to answer their problem statement with the provided data given what they've discovered during EDA?
 
-**Preprocessing and Modeling**
-- Are categorical variables one-hot encoded?
-- Does the student investigate or manufacture features with linear relationships to the target?
-- Have the data been scaled appropriately?
-- Does the student properly split and/or sample the data for validation/training purposes?
-- Does the student utilize feature selection to remove noisy or multi-collinear features?
-- Does the student test and evaluate a variety of models to identify a production algorithm (**AT MINIMUM:** linear regression, lasso, and ridge)?
-- Does the student defend their choice of production model relevant to the data at hand and the problem?
-- Does the student explain how the model works and evaluate its performance successes/downfalls?
 
-**Evaluation and Conceptual Understanding**
-- Does the student accurately identify and explain the baseline score?
-- Does the student select and use metrics relevant to the problem objective?
-- Is more than one metric utilized in order to better assess performance?
-- Does the student interpret the results of their model for purposes of inference?
-- Is domain knowledge demonstrated when interpreting results?
-- Does the student provide appropriate interpretation with regards to descriptive and inferential statistics?
 
-**Conclusion and Recommendations**
-- Does the student provide appropriate context to connect individual steps back to the overall project?
-- Is it clear how the final recommendations were reached?
-- Are the conclusions/recommendations clearly stated?
-- Does the conclusion answer the original problem statement?
-- Does the student address how findings of this research can be applied for the benefit of stakeholders?
-- Are future steps to move the project forward identified?
+### DATA DICTIONARY
 
-### Organization and Professionalism
+| ITEM and DESCRIPTION                                                                     | TYPE        | ACTION                       |
+|------------------------------------------------------------------------------------------|-------------|------------------------------|
+|                                                                                          |             |                              |
+| •   SalePrice - the property's sale price in dollars.                                    | Numerical   | None                         |
+|                                                                                          |             |                              |
+| •   MSSubClass: The building class                                                       | Numerical   | None                         |
+| •   MSZoning: Identifies the general zoning classification of the sale.                  | Categorical | Future mapping to numerical? |
+| •   LotFrontage: Linear feet of street connected to property                             | Numerical   | None                         |
+| •   LotArea: Lot size in square feet                                                     | Numerical   | None                         |
+| •   Street: Type of road access to property                                              | Categorical | Map to numerical             |
+| •   Alley: Type of alley access to property                                              | Categorical | Not Used                     |
+| •   LotShape: General shape of property                                                  | Categorical | Map to numerical             |
+| •   LandContour: Flatness of the property                                                | Categorical | Map to numerical             |
+| •   Utilities: Type of utilities available                                               | Categorical | Map to numerical             |
+| •   LotConfig: Lot configuration                                                         | Categorical | Get dummies                  |
+| •   LandSlope: Slope of property                                                         | Categorical | Map to numerical             |
+| •   Neighborhood: Physical locations within Ames city limits                             | Categorical | Get dummies                  |
+| •   Condition1: Proximity to main road or railroad                                       | Categorical | Not Used                     |
+| •   Condition2: Proximity to main road or railroad (if a second is present)              | Categorical | Not Used                     |
+| •   BldgType: Type of dwelling                                                           | Categorical | Not Used                     |
+| •   HouseStyle: Style of dwelling                                                        | Categorical | Not Used                     |
+| •   OverallQual: Overall material and finish quality                                     | Numerical   | None                         |
+| •   OverallCond: Overall condition rating                                                |             | Redundant                    |
+| •   YearBuilt: Original construction date                                                | Numerical   | None                         |
+| •   YearRemodAdd: Remodel date (same as construction date if no remodeling or additions) | Numerical   | None                         |
+| •   RoofStyle: Type of roof                                                              | Categorical | Not Used                     |
+| •   RoofMatl: Roof material                                                              | Categorical | Not Used                     |
+| •   Exterior1st: Exterior covering on house                                              | Categorical | Not Used                     |
+| •   Exterior2nd: Exterior covering on house (if more than one material)                  | Categorical | Not Used                     |
+| •   MasVnrType: Masonry veneer type                                                      | Categorical | Not Used                     |
+| •   MasVnrArea: Masonry veneer area in square feet                                       | Numerical   | None                         |
+| •   ExterQual: Exterior material quality                                                 | Categorical | Map to numerical             |
+| •   ExterCond: Present condition of the material on the exterior                         | Categorical | Redundant                    |
+| •   Foundation: Type of foundation                                                       | Categorical | Not Used                     |
+| •   BsmtQual: Height of the basement                                                     | Categorical | Map to numerical             |
+| •   BsmtCond: General condition of the basement                                          | Categorical | Redundant                    |
+| •   BsmtExposure: Walkout or garden level basement walls                                 | Categorical | Map to numerical             |
+| •   BsmtFinType1: Quality of basement finished area                                      | Categorical | Map to numerical             |
+| •   BsmtFinSF1: Type 1 finished square feet                                              | Numerical   | None                         |
+| •   BsmtFinType2: Quality of second finished area (if present)                           | Categorical | Map to numerical             |
+| •   BsmtFinSF2: Type 2 finished square feet                                              | Numerical   | None                         |
+| •   BsmtUnfSF: Unfinished square feet of basement area                                   | Numerical   | None                         |
+| •   TotalBsmtSF: Total square feet of basement area                                      | Numerical   | None                         |
+| •   Heating: Type of heating                                                             | Categorical | Not Used                     |
+| •   HeatingQC: Heating quality and condition                                             | Categorical | Map to numerical             |
+| •   CentralAir: Central air conditioning                                                 | Categorical | Map to numerical             |
+| •   Electrical: Electrical system                                                        | Categorical | Not Used                     |
+| •   1stFlrSF: First Floor square feet                                                    | Numerical   | None                         |
+| •   2ndFlrSF: Second floor square feet                                                   | Numerical   | None                         |
+| •   LowQualFinSF: Low quality finished square feet (all floors)                          | Numerical   | None                         |
+| •   GrLivArea: Above grade (ground) living area square feet                              | Numerical   | None                         |
+| •   BsmtFullBath: Basement full bathrooms                                                | Numerical   | None                         |
+| •   BsmtHalfBath: Basement half bathrooms                                                | Numerical   | None                         |
+| •   FullBath: Full bathrooms above grade                                                 | Numerical   | None                         |
+| •   HalfBath: Half baths above grade                                                     | Numerical   | None                         |
+| •   Bedroom: Number of bedrooms above basement level                                     | Numerical   | None                         |
+| •   Kitchen: Number of kitchens                                                          | Numerical   | None                         |
+| •   KitchenQual: Kitchen quality                                                         | Categorical | Map to numerical             |
+| •   TotRmsAbvGrd: Total rooms above grade (does not include bathrooms)                   | Numerical   | None                         |
+| •   Functional: Home functionality rating                                                | Categorical | Map to numerical             |
+| •   Fireplaces: Number of fireplaces                                                     | Numerical   | None                         |
+| •   FireplaceQu: Fireplace quality                                                       | Categorical | Map to numerical             |
+| •   GarageType: Garage location                                                          | Categorical | Not Used                     |
+| •   GarageYrBlt: Year garage was built                                                   | Numerical   | None                         |
+| •   GarageFinish: Interior finish of the garage                                          | Categorical | Map to numerical             |
+| •   GarageCars: Size of garage in car capacity                                           | Numerical   | None                         |
+| •   GarageArea: Size of garage in square feet                                            | Numerical   | None                         |
+| •   GarageQual: Garage quality                                                           | Categorical | Map to numerical             |
+| •   GarageCond: Garage condition                                                         | Categorical | Redundant                    |
+| •   PavedDrive: Paved driveway                                                           | Categorical | Map to numerical             |
+| •   WoodDeckSF: Wood deck area in square feet                                            | Numerical   | None                         |
+| •   OpenPorchSF: Open porch area in square feet                                          | Numerical   | None                         |
+| •   EnclosedPorch: Enclosed porch area in square feet                                    | Numerical   | None                         |
+| •   3SsnPorch: Three season porch area in square feet                                    | Numerical   | None                         |
+| •   ScreenPorch: Screen porch area in square feet                                        | Numerical   | None                         |
+| •   PoolArea: Pool area in square feet                                                   | Numerical   | None                         |
+| •   PoolQC: Pool quality                                                                 | Categorical | Map to numerical             |
+| •   Fence: Fence quality                                                                 | Categorical | Not Used                     |
+| •   MiscFeature: Miscellaneous feature not covered in other categories                   | Categorical | Not Used                     |
+| •   MiscVal: $Value of miscellaneous feature                                             | Numerical   | None                         |
+| •   MoSold: Month Sold                                                                   | Numerical   | None                         |
+| •   YrSold: Year Sold                                                                    | Numerical   | None                         |
+| •   SaleType: Type of sale                                                               | Categorical | Future mapping to numerical? |
 
-**Project Organization**
-- Are modules imported correctly (using appropriate aliases)?
-- Are data imported/saved using relative paths?
-- Does the README provide a good executive summary of the project?
-- Is markdown formatting used appropriately to structure notebooks?
-- Are there an appropriate amount of comments to support the code?
-- Are files & directories organized correctly?
-- Are there unnecessary files included?
-- Do files and directories have well-structured, appropriate, consistent names?
 
-**Visualizations**
-- Are sufficient visualizations provided?
-- Do plots accurately demonstrate valid relationships?
-- Are plots labeled properly?
-- Are plots interpreted appropriately?
-- Are plots formatted and scaled appropriately for inclusion in a notebook-based technical report?
 
-**Python Syntax and Control Flow**
-- Is care taken to write human readable code?
-- Is the code syntactically correct (no runtime errors)?
-- Does the code generate desired results (logically correct)?
-- Does the code follows general best practices and style guidelines?
-- Are Pandas functions used appropriately?
-- Are `sklearn` methods used appropriately?
 
-**Presentation**
-- Is the problem statement clearly presented?
-- Does a strong narrative run through the presentation building toward a final conclusion?
-- Are the conclusions/recommendations clearly stated?
-- Is the level of technicality appropriate for the intended audience?
-- Is the student substantially over or under time?
-- Does the student appropriately pace their presentation?
-- Does the student deliver their message with clarity and volume?
-- Are appropriate visualizations generated for the intended audience?
-- Are visualizations necessary and useful for supporting conclusions/explaining findings?
 
-### REMEMBER:
 
-This is a learning environment and you are encouraged to try new things, even if they end up failing. While this rubric outlines what we look for in a _good_ project, it is up to you to go above and beyond to create a _great_ project. **Learn from your failures and you'll be prepared to succeed in the workforce**.
+## Conclusions and Recommendations
+
+<font size='2'>
+With $R^2$ scores of around 0.83, the linear regressions run on this particular dataset, with the null-value-filling and selective multicollinear column dropping done here has had a relatively robust result.  With the usual caveats that the underlying drivers could change in the future, we can nevertheless provide some concrete interpretations and recommendations regarding the Ames, IA housing market.  
+
+Please refer to the notebook cells in the "Conclusions and Recommendations" Section at the end.  In that section's cells, the absolute values of the coefficients that are the 25 most impactful are listed.  To get the direction of the impact (positive or negative) look at the two cells below that.  The impacts can be as high as paying an additional `$`111,000 to live in Green Hills  versus the Somerset neighborhood (`$`116,000 - `$`15,000), for a house that is identical in all other respects.  
+
+Outside of location, there are also specific types of quality improvements that are impactful on Sale Price, such as Basement Quality, Garage Quality, and Exterior Quality.  Making one-level improvements on the quality scale can net the owner `$`9,500 - `$`13,000 per quality category.  
+
+In looking at the p-values, we can also see that Total above-grade square footage, along with Overall Quality are the highest correlated metrics to Sale Price.  The coefficients might be lower, but that is only on an unscaled basis.  All in all, the linear regressions have generated inferences that are intuitive and actionable.
+
+</font>
+
+
+
+
+
+
+
+
+
