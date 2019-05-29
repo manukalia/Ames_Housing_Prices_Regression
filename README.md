@@ -1,11 +1,12 @@
-<img src="http://imgur.com/1ZcRyrc.png" style="float: left; margin: 20px; height: 55px">
+___
 
-# Project Two  --  Ames Iowa Housing Data Analysis  
-<Font size='3'>  
+## Project Two ... Ames Iowa Housing Data Analysis  
 
-&nbsp; &nbsp; Manu Kalia<br> &nbsp; &nbsp; DSI 7 - SF<br> &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; 25 - Mar -2019  
-</font>  
-
+<font size='2'>
+&nbsp; &nbsp;Manu Kalia Regression Project<br>
+&nbsp;&nbsp; 25 - Mar - 2019
+</font>
+<br><br>  
 
 ---
 

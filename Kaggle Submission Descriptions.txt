@@ -1,0 +1,72 @@
+Kaggle Acmes Competition Submissions
+
+
+Submission 1:  pred_kag2.csv
+
+Model:  linear regression
+Scaling:  Standard Scaler
+Features:  33
+Order:  first order only
+Regularization:  lasso
+
+
+
+Submission 2:  pred1_lasso_kag.csv
+
+Model:   Pipeline (lasso)
+Scaling:  Standard Scaler
+Features:  73
+Order:  first order only
+Regularization:  lasso
+
+
+
+Submission 3:  pred2_lasso_kag.csv
+
+Model:   Pipeline (lasso)
+Scaling:  Standard Scaler
+Features:  33
+Order:  first order only
+Regularization:  lasso
+
+
+
+Submission 4:  pred2_ridge_kag.csv
+
+Model:   Pipeline (ridge)
+Scaling:  Standard Scaler
+Features:  33
+Order:  first order only
+Regularization:  ridge
+
+
+
+
+Submission 5:  pred3_lasso_kag.csv
+
+Model:  linear regression
+Scaling:  Standard Scaler
+Features:  21
+Order:  first order only
+Regularization:  lasso
+
+
+
+
+Submission 6:  pred3_lasso_kag.csv
+
+Model:  linear regression
+Scaling:  Standard Scaler
+Features:  82
+Order:  first order only
+Regularization:  lasso
+
+
+
+Submission x:  pred2_logreg_kag.csv
+
+Model:   Pipeline (lasso)
+Scaling:  Standard Scaler
+Features:  33
+Order:  first order only
+Regularization:  lasso
